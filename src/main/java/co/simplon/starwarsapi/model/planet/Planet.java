@@ -10,7 +10,8 @@ import java.util.Set;
 public class Planet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(allocationSize = 1, name = "planet_id_seq")
+    @GeneratedValue(generator = "planet_id_seq")
     private Long id;
 
     @Column(name = "planet_name")
@@ -50,6 +51,11 @@ public class Planet {
     }
 
     public Planet(String name) { this.name = name; }
+
+    public Planet(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
